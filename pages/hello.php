@@ -9,59 +9,48 @@ $dbname = 'users';
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQLi " . mysqli_connect_error();
-  }
-  
+{
+    echo "Failed to connect to MySQLi " . mysqli_connect_error();
+}
+
 
 // 2. Perform databse query
-$query = "SELECT * FROM usr";
+$query = "SELECT * FROM user_base";
 $result = mysqli_query($connection, $query);
 ?>
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		
-		<title>Rideshare App</title>
-	</head>
-	<body>
-		<div class="bg-image"></div>
-		<div >
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Address</th>
-				</tr>
-				<tr>
-					<td>45</td>
-					<td>Jennifer</td>
-					<td>311 Clinton Ave, Minneapolis, MN 55454</td>
-				</tr>
-				<?
-					while ($row = mysqli_fetch_row($result)) {
-						echo "<tr><td>" . $row[0] . "</td>";
-						echo "<td>" . $row[1] . "</td>";
-						echo "<td>" . $row[2] . " " . $row[3] .
-							", " . $row[4] . ", " . $row[5] . " "
-								. $row[6] . "</td> </tr>";
-					}
-				?>
-			</table>
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <title>Rideshare App</title>
+</head>
+<body>
+<div class="bg-image">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Address</th>
+        </tr>
+        <?php
+        while($row = mysqli_fetch_row($result)) {
+            //var_dump($row);
+            echo "<tr><td>" . $row[0] . "</td>";
+            echo "<td>" . $row[1] . " " . $row[2] . "</td>"; // Name
+            echo "<td>" . $row[3] . " " . $row[4] . // XXX StreetName
+                ", " . $row[5] . ", " . $row[6] . " " // City, State
+                . $row[7] . "</td> </tr>";
+        }
+        ?>
+    </table>
+</div>
+</body>
 </html>
 
-<?
-// 3. Use returned data (if any)
-/*
-while ($row = mysqli_fetch_row($result)) {
-	echo $row[1];
-}*/
-
+<?php
 // 4. Release returned data
 
 mysqli_free_result($result);
@@ -69,3 +58,4 @@ mysqli_free_result($result);
 // 5. Close database connection
 mysqli_close($connection);
 ?>
+

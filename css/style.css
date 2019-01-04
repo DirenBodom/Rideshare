@@ -35,8 +35,9 @@ p {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
-    background-color: rgb(255,255,255); /* Fallback color */
+    width: 90%;
+	margin:20px;
+    background-color: rgba(255,255,255, .4); /* Fallback color */
     color: black;
     font-weight: bold;
     position: absolute;
@@ -49,5 +50,5 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: rgba(100,100,100, .4);
 }
