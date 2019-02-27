@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\private"
+    "\\private",
+    "\\public"
   ],
+  "SelectedNode": "\\private\\signup_handler.php",
   "PreviewInSolutionExplorer": false
 }

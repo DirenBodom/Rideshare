@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+$validationErrors = $_SESSION['validationErrors'] ?? '';
+$_SESSION['validationErrors'] = '';
+
+
+/*
+What the above lines actually do;
+
+if (isset($_SESSION['validationErrors'])) {
+	$validationErrors = $_SESSION['validationErrors'];
+} else {
+	$validationErrors = '';
+}*/
+?>
+<!DOCTYPE html>
 
 <html>
 	<head>
@@ -11,7 +26,8 @@
 		<div class="bg-image"></div>
 		<div class="bg-text">
 			<h3>Sign up:&#10</h3>
-            <form name="signup" action="../private/signup_handler.php" method="POST">
+			<?= $validationErrors ?>
+            <form method="post" action="../private/signup_handler.php">
                 <p>
                     First name:
                     <input type="text" name="firstname">

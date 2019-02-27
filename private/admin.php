@@ -50,6 +50,9 @@ $conn = create_connect();
 					<th>ID</th>
 					<th>Name</th>
 					<th>Address</th>
+					<th>Email</th>
+					<th>User name</th>
+					<th>Password</th>
 				</tr>
 				<?php
 					// This is laying out the mysql table into an html table for display.
