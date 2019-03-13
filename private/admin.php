@@ -39,8 +39,6 @@ $conn = create_connect();
 					$(".usr_table").innerHTML = "<p>Testing delete</p>";
 				}
 			});
-
-
 		}
 	</script>
 	<div class="bg-image">

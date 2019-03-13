@@ -27,9 +27,7 @@
 
 	$f_name = $l_name = $email = $pwd = "";
 
-	//$pwd = $_POST["password"];
-	//$email = $_POST["email"];
-	//$usr_name = $_POST["username"];
+	// For now accept the user's input without validating since we don't have a map api.
 	$street = $_POST["addStrt"];
 	$city = $_POST["city"];
 	$state = $_POST["state"];

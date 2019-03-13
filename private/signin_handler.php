@@ -2,6 +2,8 @@
 // 
 	include_once 'create_conn.php';
 	include_once 'free_res.php';
+
+	// Start session
 	session_start();
 
 	// Credentials
@@ -40,7 +42,7 @@
 	} elseif ($result ->num_rows == 0) {
 		// User name doesn't exist.
 		$_SESSION['loginErrors'] .= "<p>User name doesn't exist, please enter a "
-									. "valid user name or sign up!.</p>";
+									. "valid user name or sign up!</p>";
 	} 
 
 	if (empty($_POST["psw"])) {
@@ -55,21 +57,25 @@
 			if (password_verify($_POST["psw"], $pwd) != 1) {
 				// Password doesn't matches
 				$_SESSION['loginErrors'] .= "<p>Incorrect password, please try again.</p>";
+			} else {
+				// Log in successful, set up session variables.
+				//session_register('username');
+				$_SESSION['username'] = $usr_name;
 			}
 		} else {
 			$_SESSION['loginErrors'] .= "<p>Password is not set.</p>";
 		}
 	}
 
-	// Check whether there were any errors, redirect to homepage if not.
+	// Check whether there were any errors, redirect to homepage if not, otherwise reload.
 
 	if ($_SESSION['loginErrors']) {
 		$redirPage = '../index.php';
 	} else {
-		//$redirPage = 'home.php';
-		die('login was successful, redir to home/admin/dashboard...');
+		$redirPage = '../public/homepage.php';
 	}
 
-
 	header("location: $redirPage");
+
+	// User password: @56Yuuuub
 ?>
