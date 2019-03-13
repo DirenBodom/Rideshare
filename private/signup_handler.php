@@ -3,6 +3,7 @@
 	include_once 'free_res.php';
 	session_start();
 
+	
 	// Credentials
 	$dbhost = 'localhost';
 	$dbuser = 'root';
@@ -12,11 +13,7 @@
 	// 1. Craete a database connection
 	$conn = create_connect();
 
-	/*
-		TODO:
-		Implement error_page.php
-
-	*/
+	// If the server request is not post, redirect to error_page.php
 
 	if ($_SERVER["REQUEST_METHOD"] != "POST") {
 		header('location: error_page.php');
@@ -115,7 +112,7 @@
 			// Regex taken from: https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
 			if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/", $_POST["password"])) {
 				// Good password was entered.
-				$pwd = $_POST["password"];
+				$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 			} else {
 				$_SESSION['validationErrors'] .= "<p>Please enter a valid password..</p>";
 			}
@@ -158,10 +155,6 @@
 
 	
 	// 2. Perform databse query
-	//$query = "INSERT INTO user_base VALUES (null, '$f_name', '$l_name', '$street', '$city', '$state', '$zip', '$email' '$usr_name', '$pwd')";
-	//$query = "insert into user_base (firstN, secN, addStreet, addCity, addState, addZip, email, userName, pass)" . "
-	//('Steffen', 'Salsa', '545 Yay St', 'Miami', 'FL', 56666, 'abc@gmail.com' 'diru2', 'afd@a')";
-
 
 	$query = "INSERT INTO user_base VALUES " . 
 			"(null, '$f_name', '$l_name', '$street', '$city', '$state', '$zip', '$email', '$usr_name', '$pwd')";
