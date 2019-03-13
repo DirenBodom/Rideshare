@@ -1,16 +1,11 @@
 <?php
 	include_once 'create_conn.php';
 	include_once 'free_res.php';
+
+	// Start session
 	session_start();
 
-	
-	// Credentials
-	$dbhost = 'localhost';
-	$dbuser = 'root';
-	$dbpass = '';
-	$dbname = 'users';
-
-	// 1. Craete a database connection
+	// Craete a database connection
 	$conn = create_connect();
 
 	// If the server request is not post, redirect to error_page.php
@@ -80,7 +75,7 @@
 				$email = $_POST["email"];
 			} else {
 				$_SESSION['validationErrors'] .= "<p>Email alreay in use.</p>" . 
-												"<p>Already have an account? Log in <a href=\"../index.html\">here</a></p>";
+												"<p>Already have an account? Log in <a href=\"../public/signin.php\">here</a></p>";
 			}
 		} else {
 			$_SESSION['validationErrors'] .= "<p>Please enter a valid email.</p>";

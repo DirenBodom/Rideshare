@@ -2,7 +2,7 @@
 
 	if (isset($_REQUEST['method']) && $_REQUEST['method'] == 'logout') {
 		logout();
-		header('location: ../index.php');
+		exit;
 	}
 	// Logs out user by destroying session data
 	function logout () {

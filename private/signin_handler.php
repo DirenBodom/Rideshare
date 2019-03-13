@@ -70,9 +70,9 @@
 	// Check whether there were any errors, redirect to homepage if not, otherwise reload.
 
 	if ($_SESSION['loginErrors']) {
-		$redirPage = '../index.php';
+		$redirPage = '../public/signin.php';
 	} else {
-		$redirPage = '../public/homepage.php';
+		$redirPage = '../index.php';
 	}
 
 	header("location: $redirPage");

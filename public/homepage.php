@@ -2,14 +2,14 @@
 	session_start();
 	// Check if the user has logged in
 	if (!isset($_SESSION['username'])) {
-		header('location: ../index.php');
+		header('location: /public/signin.php');
 	}
 	$user = $_SESSION['username'];
 ?>
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <title>Rideshare App</title>
 </head>
@@ -23,7 +23,7 @@
 		function logout_user() {
 			$.ajax({
 				type: 'POST',
-				url: '../private/logout.php',
+				url: 'private/logout.php',
 				data: {method: "logout"},
 				complete: function () {
 					console.log('AJAX worked!');
@@ -37,4 +37,3 @@
     </div>
 </body>
 </html>
-<?php //session_destroy() ?>
