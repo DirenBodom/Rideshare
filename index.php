@@ -28,7 +28,6 @@
 				success: function () {
                    // Redirect the user to the log in page.
                     $(location).attr('href', 'public/signin.php');
-
 				}
 			});
 		}
