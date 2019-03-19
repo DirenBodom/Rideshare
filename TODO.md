@@ -40,3 +40,4 @@ index.php
 -Redirect to main page.
 -Add forgotten password.
 -Add pages on the bottom such as "About"
+
