@@ -1,10 +1,15 @@
 ﻿<?php
+	include_once 'private/loadTrips.php';
+	include_once 'private/create_conn.php';
+
 	session_start();
 	// Check if the user has logged in
 	if (!isset($_SESSION['username'])) {
 		header('location: public/signin.php');
 	}
 	$user = $_SESSION['username'];
+	// Create DB connection
+	$conn = create_connect();
 ?>
 <html>
 <head>
@@ -35,6 +40,10 @@
  <div class="bg-image"></div>
     <div class="bg-text">
         <p>Hello  <?php echo $user;?> <button onclick=logout_user()>Log out</button></p>
+		<?php 
+			// This will load the table if there are any trips or display a message if not.
+			$result = load_trips_db($conn, $user);		// Connection to the user_trips database.
+		?>
     </div>
 </body>
 </html>

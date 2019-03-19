@@ -137,16 +137,12 @@
 											. "<li>Can contain alphanumeric characters and -, ., or _</li>";
 		}
 	}
-
-	// another IFs statements about the other fields...
 	
+	// Reload the page with errors before submitting query
 	if ($_SESSION['validationErrors']) {
 		header('location: ../public/signup.php');
 		exit;
 	}
-
-
-	
 	// 2. Perform databse query
 
 	$query = "INSERT INTO user_base VALUES " . 
@@ -155,29 +151,9 @@
 	$result = mysqli_query($conn, $query);   // Insert new user
 
 
+	// Redirect to scheduler and set the session variable to current user
+	$_SESSION['username'] = $usr_name;
+	header('location: ../public/scheduler.php');
 	// 5. Close database connection
 	mysqli_close($conn);
-
 ?>
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		
-		<title>Rideshare App</title>
-	</head>
-	<body>
-		<div class="bg-image"></div>
-		<div class="bg-text">
-			<h2>Welcome to Rideshare!</h2>
-			<?php
-				echo "<p>Thank you for signing up " . $f_name . " " . $l_name , "</p>";
-				echo "<p>Your email is: " . $email . "</p>";
-				echo "<p>Your user name is: " . $usr_name . "</p>";
-				echo "<p>Your address is: " . $street . ", " . $city . ", " . $state . " " . $zip . "</p>";
-			?>
-		</div>
-	</body>
-</html>
